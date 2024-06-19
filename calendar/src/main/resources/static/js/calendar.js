@@ -52,6 +52,21 @@ function hasEventOnDate(date,month,year){
     return getEventsOnDate(date,month,year).length > 0;
 }
 
+function createEventToolTip(date, month, year){
+    let tooltip = document.createElement("div");
+        tooltip.className = "event-tooltip";
+        let eventsOnDate = getEventsOnDate(date,month,year);
+        for(let i= 0; i<eventsOnDate.length;i++){
+            let event = eventsOnDate[i];
+            let eventDate = new Date(event.date);
+            let eventText = '<strong>${event.title}</strong> - ${event.description} on ${eventDate.ToLocaleDateString()}'
+            let eventElement = document.createElement("p");
+            eventElement.innerHTML = eventText;
+            tooltip.appendChild(eventElement);
+        }
+        return tooltip;
+}
+
 function showCalendar(month, year){
     let firstDay = new Date(year, month, 1).getDay();
     let calendar_body = document.getElementById("Calendar-body");
@@ -85,14 +100,10 @@ function showCalendar(month, year){
                 date++;
 
                 if(hasEventOnDate(date, month, year)){
-                    let tooltip = document.createElement("div");
-                    tooltip.className = "event-tooltip";
-                    let eventsOnDate = getEventsOnDate(date,month,year);
-                    for(let i= 0; i<eventsOnDate.length;i++){
-                        let 
-                    }
+                    console.log("has event")
+                    cell.classList.add("event-marker")
+                    cell.appendChild(createEventToolTip(date,month,year))
                 }
-
             }
 
         }

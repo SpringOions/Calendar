@@ -20,3 +20,35 @@ td{
     padding-left: 5px;
     
 }
+
+.event-marker{
+    position: relative;
+}
+
+.event-marker::after{
+    content:'';
+    display:block;
+    width:6px;
+    height:6px;
+    background-color: red;
+    position: absolute;
+    bottom:0;
+    left:0;
+}
+
+.event-tooltip{
+    position: absolute;
+    padding: 10px;
+    display: none;
+    border-radius:20px;
+    bottom:20px;
+    left: 50%;
+    transform:translateX(-50%);
+    transition: all 0.3s;
+    box-shadow: 0 2px 4px rgb(0,0,0,0.2);
+    z-index: 1;
+}
+
+.event-marker:hover .event-tooltip{
+    display: block;
+}
